@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BP film | معرض التطبيقات والألعاب التفاعلية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #8b1e24;
+      --primary-accent: #aa242b;
+      --bg-dark: #1b1b1f;
+      --bg-surface: #26262b;
+      --logo-bg: #f5f5f7;
+      --text-main: #f0f0f5;
+      --text-muted: #a5a5b0;
+      --border: rgba(255, 255, 255, 0.1);
+      --gold: #d4af37;
+      --whatsapp: #25d366;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    [dir="ltr"] { font-family: 'Poppins', sans-serif; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    header {
+      background: rgba(30, 30, 35, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo-card {
+      background: var(--logo-bg);
+      padding: 6px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .logo-img { height: 42px; width: auto; max-width: 140px; object-fit: contain; }
+
+    .header-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+
+    .lang-btn, .upload-btn, .manage-btn, .export-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .upload-btn { background: var(--primary); border-color: var(--primary); }
+    .upload-btn:hover { background: var(--primary-accent); }
+    .manage-btn:hover, .lang-btn:hover, .export-btn:hover { background: rgba(255, 255, 255, 0.18); }
+
+    .hero {
+      text-align: center;
+      padding: 2.8rem 1rem 1.8rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-logo-wrapper {
+      display: inline-block;
+      background: var(--logo-bg);
+      padding: 16px 26px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      margin-bottom: 1.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-logo-large { height: 110px; width: auto; display: block; object-fit: contain; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 0.8rem; color: #ffffff; }
+    .hero p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+
+    .visitor-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 0.55rem 1.3rem;
+      border-radius: 50px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .filter-container {
+      max-width: 1200px;
+      margin: 0 auto 1.3rem;
+      padding: 0 1.2rem;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1.2rem 3.5rem;
+      width: 100%;
+      flex-grow: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(139, 30, 36, 0.55);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-preview {
+      height: 160px;
+      background: #151518;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-category-badge {
+      font-size: 0.72rem;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold);
+      padding: 3px 10px;
+      border-radius: 12px;
+      align-self: flex-start;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.35; }
+    .card-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; flex-grow: 1; }
+    .card-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    .btn {
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 0.85rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn-primary { background: var(--primary); color: #fff; flex: 2; min-width: 100px; }
+    .btn-primary:hover { background: var(--primary-accent); }
+    .btn-secondary { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--border); flex: 1; min-width: 70px; }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.16); }
+    .btn-copy { background: rgba(212, 175, 55, 0.15); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.3); }
+    .btn-copy:hover { background: rgba(212, 175, 55, 0.28); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-box {
+      background: #222227;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.6rem;
+      width: 100%;
+      max-width: 580px;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      margin-bottom: 1.1rem;
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; margin-bottom: 0.35rem; font-size: 0.88rem; color: var(--text-muted); }
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      background: #151518;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); }
+
+    .file-input-wrapper {
+      border: 2px dashed var(--border);
+      padding: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .file-input-wrapper:hover { border-color: var(--primary); }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+
+    .manage-item {
+      background: #151518;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .manage-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-section {
+      background: rgba(0, 0, 0, 0.25);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.2rem;
+      text-align: center;
+    }
+
+    .contact-container { max-width: 800px; margin: 0 auto; }
+    .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.3rem; }
+    .contact-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 0.9rem 1.3rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-item:hover { border-color: var(--primary); background: rgba(139, 30, 36, 0.22); }
+
+    footer {
+      text-align: center;
+      padding: 1.8rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: #141417;
+    }
+
+    .footer-logo-card { background: var(--logo-bg); padding: 5px 14px; border-radius: 10px; }
+    .footer-logo { height: 32px; display: block; }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: var(--gold);
+      color: #111;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: all 0.35s ease;
+      z-index: 1100;
+      font-size: 0.95rem;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    .empty-state {
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 1.05rem;
+    }
+
+    .note-box {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .header-actions { gap: 0.4rem; }
+      .lang-btn, .upload-btn, .manage-btn, .export-btn { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
+      .card-actions { flex-direction: column; }
+      .btn { flex: none !important; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo-card" onclick="location.reload()">
+        <img src="Logo.png" alt="BP film Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('textLogo').style.display='block';">
+        <span id="textLogo" style="display:none; font-weight:800; font-size:1.15rem; color:#111;">BP film</span>
+      </a>
+      <div class="header-actions">
+        <button class="upload-btn" onclick="openUploadModal()">
+          <span id="btnUpload">📤 رفع تطبيق</span>
+        </button>
+        <button class="manage-btn" onclick="openManageModal()">
+          <span id="btnManage">⚙️ إدارة</span>
+        </button>
+        <button class="export-btn" onclick="exportApps()">
+          <span id="btnExport">📦 تصدير</span>
+        </button>
+        <button class="lang-btn" onclick="toggleLanguage()">
+          🌐 <span id="langLabel">English</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-logo-wrapper">
+      <img src="Logo.png" alt="BP film" class="hero-logo-large" onerror="this.parentNode.style.display='none'">
+    </div>
+    <h1 id="heroTitle">معرض التطبيقات والألعاب التفاعلية</h1>
+    <p id="heroDesc">مساحة مخصصة لمشاركة وتجربة أفضل الإنتاجات والبرمجيات المصممة بلغة HTML5</p>
+
+    <div class="visitor-counter">
+      <span>👁️ <span id="counterText">عدد الزوار:</span></span>
+      <span id="visitorCount">0</span>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <div class="filter-container" id="filterBar">
+    <button class="filter-btn active" data-cat="الكل" onclick="filterCategory('الكل', this)">الكل</button>
+    <button class="filter-btn" data-cat="ألعاب" onclick="filterCategory('ألعاب', this)">🎮 ألعاب</button>
+    <button class="filter-btn" data-cat="تعليم" onclick="filterCategory('تعليم', this)">🧮 تعليم</button>
+    <button class="filter-btn" data-cat="أدوات" onclick="filterCategory('أدوات', this)">📝 أدوات</button>
+  </div>
+
+  <!-- Apps Grid -->
+  <main class="main-container">
+    <div class="grid" id="appsGrid"></div>
+  </main>
+
+  <!-- Contact -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <h2 id="contactTitle">تواصل معي</h2>
+      <div class="contact-grid">
+        <a href="tel:39466673" class="contact-item">📞 <span>39466673</span></a>
+        <a href="https://wa.me/39466673" target="_blank" rel="noopener" class="contact-item" style="border-color: var(--whatsapp)">💬 <span>WhatsApp</span></a>
+        <a href="mailto:bahar981@gmail.com" class="contact-item">✉️ <span>bahar981@gmail.com</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo-card">
+      <img src="Logo.png" alt="BP film Logo" class="footer-logo" onerror="this.parentNode.style.display='none'">
+    </div>
+    <p id="footerText">© 2026 BP film. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <!-- Modal: Upload -->
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span id="uploadModalTitle">📤 رفع وإضافة تطبيق جديد</span>
+        <button class="btn btn-secondary" style="padding:0.3rem 0.65rem;" onclick="closeUploadModal()">✕</button>
+      </div>
+
+      <div class="note-box" id="uploadNote">
+        <strong>نصيحة مهمة للمشاركة:</strong><br>
+        أفضل طريقة هي استضافة ملف الـ HTML على GitHub Pages أو Netlify ثم وضع الرابط المباشر هنا. 
+        رفع الملف مباشرة يحوله إلى data URL (يعمل لكن الرابط طويل جداً وغير مريح للمشاركة).
+      </div>
+      
+      <div class="form-group">
+        <label id="labelName">اسم التطبيق / اللعبة:</label>
+        <input type="text" id="appName" class="form-control" placeholder="أدخل الاسم">
+      </div>
+
+      <div class="form-group">
+        <label id="labelCategory">التصنيف:</label>
+        <select id="appCategory" class="form-control">
+          <option value="ألعاب">🎮 ألعاب</option>
+          <option value="تعليم">🧮 تعليم</option>
+          <option value="أدوات">📝 أدوات</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="labelDesc">الوصف المختصر:</label>
+        <textarea id="appDesc" class="form-control" rows="2" placeholder="وصف للعبة أو التطبيق"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label id="labelIcon">أيقونة أو رابط صورة:</label>
+        <input type="text" id="appIcon" class="form-control" placeholder="🎮 أو https://...">
+      </div>
+
+      <div class="form-group">
+        <label id="labelUrl">الرابط المباشر للتطبيق (مستحسن):</label>
+        <input type="text" id="appUrl" class="form-control" placeholder="https://example.com/game.html أو apps/runner/index.html">
+        <div class="hint" id="hintUrl">ضع رابطاً عاماً يعمل من أي مكان. هذا هو الأفضل للمشاركة.</div>
+      </div>
+
+      <div class="form-group">
+        <label id="labelFile">أو ارفع ملف HTML (سيُحوَّل إلى data URL):</label>
+        <div class="file-input-wrapper" onclick="document.getElementById('appFile').click()">
+          <input type="file" id="appFile" accept=".html,.htm" style="display:none;" onchange="handleFileUpload(event)">
+          <span id="fileNameDisplay" style="color:var(--gold); font-weight:600;">📁 اضغط لاختيار ملف HTML</span>
+        </div>
+        <div class="hint" id="hintFile">الملف المرفوع يُخزَّن محلياً كـ data URL. يمكن مشاركته بنسخ الرابط، لكنه طويل جداً.</div>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:1.3rem; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="submitApp()" id="btnSaveApp">حفظ ونشر 🚀</button>
+        <button class="btn btn-secondary" onclick="closeUploadModal()" id="btnCancel">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Manage -->
+  <div class="modal-overlay" id="manageModal">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span id="manageModalTitle">⚙️ إدارة وتعديل التطبيقات</span>
+        <button class="btn btn-secondary" style="padding:0.3rem 0.65rem;" onclick="closeManageModal()">✕</button>
+      </div>
+      <div id="manageListContainer"></div>
+      <div style="margin-top:1rem; display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="importApps()" id="btnImport">📥 استيراد JSON</button>
+        <button class="btn btn-secondary" onclick="resetToDefault()" id="btnReset" style="color:#ff8a8a;">إعادة تعيين</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">تمت العملية بنجاح! ✅</div>
+
+  <script>
+    // ========== State ==========
+    let currentLang = 'ar';
+    let uploadedFileContent = '';
+    let currentFilter = 'الكل';
+
+    const translations = {
+      ar: {
+        heroTitle: 'معرض التطبيقات والألعاب التفاعلية',
+        heroDesc: 'مساحة مخصصة لمشاركة وتجربة أفضل الإنتاجات والبرمجيات المصممة بلغة HTML5',
+        counterText: 'عدد الزوار:',
+        contactTitle: 'تواصل معي',
+        footerText: '© 2026 BP film. جميع الحقوق محفوظة.',
+        btnUpload: '📤 رفع تطبيق',
+        btnManage: '⚙️ إدارة',
+        btnExport: '📦 تصدير',
+        langLabel: 'English',
+        filterAll: 'الكل',
+        filterGames: '🎮 ألعاب',
+        filterEdu: '🧮 تعليم',
+        filterTools: '📝 أدوات',
+        empty: 'لا توجد تطبيقات لعرضها في هذا التصنيف.',
+        tryBtn: 'تجربة 🚀',
+        copyBtn: 'نسخ الرابط',
+        uploadModalTitle: '📤 رفع وإضافة تطبيق جديد',
+        manageModalTitle: '⚙️ إدارة وتعديل التطبيقات',
+        labelName: 'اسم التطبيق / اللعبة:',
+        labelCategory: 'التصنيف:',
+        labelDesc: 'الوصف المختصر:',
+        labelIcon: 'أيقونة أو رابط صورة:',
+        labelUrl: 'الرابط المباشر للتطبيق (مستحسن):',
+        labelFile: 'أو ارفع ملف HTML (سيُحوَّل إلى data URL):',
+        hintUrl: 'ضع رابطاً عاماً يعمل من أي مكان. هذا هو الأفضل للمشاركة.',
+        hintFile: 'الملف المرفوع يُخزَّن محلياً كـ data URL. يمكن مشاركته بنسخ الرابط، لكنه طويل جداً.',
+        btnSaveApp: 'حفظ ونشر 🚀',
+        btnCancel: 'إلغاء',
+        uploadNote: '<strong>نصيحة مهمة للمشاركة:</strong><br>أفضل طريقة هي استضافة ملف الـ HTML على GitHub Pages أو Netlify ثم وضع الرابط المباشر هنا. رفع الملف مباشرة يحوله إلى data URL (يعمل لكن الرابط طويل جداً وغير مريح للمشاركة).',
+        fileChoose: '📁 اضغط لاختيار ملف HTML',
+        fileSelected: 'تم اختيار الملف: ',
+        btnImport: '📥 استيراد JSON',
+        btnReset: 'إعادة تعيين',
+        toastAdded: 'تمت إضافة التطبيق بنجاح! ✅',
+        toastUpdated: 'تم تحديث التطبيق بنجاح! ✅',
+        toastDeleted: 'تم حذف التطبيق بنجاح! 🗑️',
+        toastCopied: 'تم نسخ الرابط بنجاح! ✅',
+        toastExported: 'تم تصدير القائمة! ✅',
+        toastImported: 'تم استيراد القائمة بنجاح! ✅',
+        toastReset: 'تمت إعادة التعيين إلى القائمة الافتراضية.',
+        alertNameUrl: 'يرجى كتابة الاسم ووضع رابط أو رفع ملف!',
+        confirmDelete: 'هل أنت متأكد من حذف هذا التطبيق نهائياً؟',
+        confirmReset: 'هل تريد إعادة تعيين كل التطبيقات إلى القائمة الافتراضية؟ سيتم فقدان التعديلات.',
+        hideLabel: 'إخفاء من المعرض',
+        saveBtn: '💾 حفظ',
+        deleteBtn: '🗑️ حذف',
+        noApps: 'لا توجد تطبيقات مسجلة.',
+        dataUrlNote: 'رابط مدمج (data URL) — يمكن لصقه في المتصفح ليفتح مباشرة'
+      },
+      en: {
+        heroTitle: 'Interactive Apps & Games Showcase',
+        heroDesc: 'A dedicated space to share and experience HTML5 applications and games.',
+        counterText: 'Visitor Count:',
+        contactTitle: 'Contact Me',
+        footerText: '© 2026 BP film. All rights reserved.',
+        btnUpload: '📤 Upload App',
+        btnManage: '⚙️ Manage',
+        btnExport: '📦 Export',
+        langLabel: 'عربي',
+        filterAll: 'All',
+        filterGames: '🎮 Games',
+        filterEdu: '🧮 Education',
+        filterTools: '📝 Tools',
+        empty: 'No apps to display in this category.',
+        tryBtn: 'Try 🚀',
+        copyBtn: 'Copy Link',
+        uploadModalTitle: '📤 Upload & Add New App',
+        manageModalTitle: '⚙️ Manage & Edit Apps',
+        labelName: 'App / Game Name:',
+        labelCategory: 'Category:',
+        labelDesc: 'Short Description:',
+        labelIcon: 'Icon or Image URL:',
+        labelUrl: 'Direct App URL (recommended):',
+        labelFile: 'Or upload HTML file (becomes data URL):',
+        hintUrl: 'Paste a public URL that works from anywhere. Best for sharing.',
+        hintFile: 'Uploaded file is stored as a data URL. Shareable by copying, but the link is very long.',
+        btnSaveApp: 'Save & Publish 🚀',
+        btnCancel: 'Cancel',
+        uploadNote: '<strong>Important tip for sharing:</strong><br>Best practice is to host the HTML file on GitHub Pages or Netlify, then paste the direct link here. Uploading converts it to a data URL (works but the link is very long and inconvenient).',
+        fileChoose: '📁 Click to choose an HTML file',
+        fileSelected: 'Selected file: ',
+        btnImport: '📥 Import JSON',
+        btnReset: 'Reset to Default',
+        toastAdded: 'App added successfully! ✅',
+        toastUpdated: 'App updated successfully! ✅',
+        toastDeleted: 'App deleted successfully! 🗑️',
+        toastCopied: 'Link copied successfully! ✅',
+        toastExported: 'List exported! ✅',
+        toastImported: 'List imported successfully! ✅',
+        toastReset: 'Reset to default list.',
+        alertNameUrl: 'Please enter a name and provide a URL or upload a file!',
+        confirmDelete: 'Are you sure you want to permanently delete this app?',
+        confirmReset: 'Reset all apps to the default list? Your changes will be lost.',
+        hideLabel: 'Hide from gallery',
+        saveBtn: '💾 Save',
+        deleteBtn: '🗑️ Delete',
+        noApps: 'No apps registered.',
+        dataUrlNote: 'Embedded data URL — paste into browser address bar to open'
+      }
+    };
+
+    // Default sample apps (replace URLs with your real hosted links)
+    const initialApps = [
+      {
+        id: 1,
+        name: "لعبة الركض اللانهائي",
+        nameEn: "Endless Runner Game",
+        category: "ألعاب",
+        icon: "🎮",
+        desc: "لعبة تفاعلية ممتعة ومصممة لتعمل بسلاسة على كافة الأجهزة والهواتف.",
+        descEn: "A fun interactive game designed to run smoothly on all devices and phones.",
+        url: "apps/runner/index.html",
+        hidden: false
+      },
+      {
+        id: 2,
+        name: "تطبيق الرياضيات التفاعلي",
+        nameEn: "Interactive Math App",
+        category: "تعليم",
+        icon: "🧮",
+        desc: "أداة تعليمية تفاعلية مبسطة للمراحل التعليمية المختلفة.",
+        descEn: "A simplified interactive educational tool for different school levels.",
+        url: "apps/math/index.html",
+        hidden: false
+      },
+      {
+        id: 3,
+        name: "منصة الاستبيانات والأدوات",
+        nameEn: "Forms & Tools Platform",
+        category: "أدوات",
+        icon: "📝",
+        desc: "نماذج تفاعلية واستبيانات معالجة فورياً.",
+        descEn: "Interactive forms and surveys with instant processing.",
+        url: "apps/forms/index.html",
+        hidden: false
+      }
+    ];
+
+    let appsList = JSON.parse(localStorage.getItem('bp_film_apps_v4')) || structuredClone(initialApps);
+
+    // ========== Visitor Counter ==========
+    function initVisitorCount() {
+      let count = parseInt(localStorage.getItem('bp_film_visitors') || '0', 10);
+      // Increment only once per session
+      if (!sessionStorage.getItem('bp_visited')) {
+        count += 1;
+        localStorage.setItem('bp_film_visitors', count);
+        sessionStorage.setItem('bp_visited', '1');
+      }
+      document.getElementById('visitorCount').textContent = count.toLocaleString();
+    }
+
+    // ========== Render ==========
+    function getDisplayName(app) {
+      return currentLang === 'en' && app.nameEn ? app.nameEn : app.name;
+    }
+    function getDisplayDesc(app) {
+      return currentLang === 'en' && app.descEn ? app.descEn : app.desc;
+    }
+
+    function renderApps(filterCat = currentFilter) {
+      currentFilter = filterCat;
+      const grid = document.getElementById('appsGrid');
+      grid.innerHTML = '';
+
+      const filtered = appsList.filter(app => !app.hidden && (filterCat === 'الكل' || app.category === filterCat));
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p class="empty-state">${translations[currentLang].empty}</p>`;
+        return;
+      }
+
+      filtered.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        let previewHtml = `<div class="card-preview">${app.icon || '🚀'}</div>`;
+        if (app.icon && (app.icon.startsWith('http') || app.icon.startsWith('data:'))) {
+          previewHtml = `<div class="card-preview"><img src="${app.icon}" alt="" loading="lazy"></div>`;
+        }
+
+        const tryText = translations[currentLang].tryBtn;
+        const copyText = translations[currentLang].copyBtn;
+
+        card.innerHTML = `
+          ${previewHtml}
+          <div class="card-body">
+            <span class="card-category-badge">${app.category}</span>
+            <div class="card-title">${getDisplayName(app)}</div>
+            <div class="card-desc">${getDisplayDesc(app)}</div>
+            <div class="card-actions">
+              <a href="${app.url}" target="_blank" rel="noopener" class="btn btn-primary">${tryText}</a>
+              <button class="btn btn-copy" onclick="copyLink('${encodeURIComponent(app.url)}', event)">${copyText}</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderApps(cat);
+    }
+
+    // ========== Modals ==========
+    function openUploadModal() {
+      uploadedFileContent = '';
+      document.getElementById('appName').value = '';
+      document.getElementById('appDesc').value = '';
+      document.getElementById('appIcon').value = '';
+      document.getElementById('appUrl').value = '';
+      document.getElementById('fileNameDisplay').textContent = translations[currentLang].fileChoose;
+      document.getElementById('uploadModal').style.display = 'flex';
+    }
+    function closeUploadModal() {
+      document.getElementById('uploadModal').style.display = 'none';
+    }
+    function openManageModal() {
+      renderManageList();
+      document.getElementById('manageModal').style.display = 'flex';
+    }
+    function closeManageModal() {
+      document.getElementById('manageModal').style.display = 'none';
+      renderApps();
+    }
+
+    // ========== File Upload ==========
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      document.getElementById('fileNameDisplay').textContent = translations[currentLang].fileSelected + file.name;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        uploadedFileContent = e.target.result; // data:text/html;base64,...
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ========== CRUD ==========
+    function submitApp() {
+      const name = document.getElementById('appName').value.trim();
+      const category = document.getElementById('appCategory').value;
+      const desc = document.getElementById('appDesc').value.trim();
+      const icon = document.getElementById('appIcon').value.trim() || (category === 'ألعاب' ? '🎮' : category === 'تعليم' ? '🧮' : '📝');
+      let url = document.getElementById('appUrl').value.trim();
+
+      if (uploadedFileContent) {
+        url = uploadedFileContent;
+      }
+
+      if (!name || !url) {
+        alert(translations[currentLang].alertNameUrl);
+        return;
+      }
+
+      const newApp = {
+        id: Date.now(),
+        name,
+        nameEn: name,
+        category,
+        desc: desc || (currentLang === 'ar' ? 'تطبيق تفاعلي جديد' : 'New interactive app'),
+        descEn: desc || 'New interactive app',
+        icon,
+        url,
+        hidden: false
+      };
+      appsList.push(newApp);
+      saveAndRefresh();
+      closeUploadModal();
+      showToast(translations[currentLang].toastAdded);
+    }
+
+    function renderManageList() {
+      const container = document.getElementById('manageListContainer');
+      container.innerHTML = '';
+
+      if (appsList.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted); text-align:center;">${translations[currentLang].noApps}</p>`;
+        return;
+      }
+
+      appsList.forEach(app => {
+        const item = document.createElement('div');
+        item.className = 'manage-item';
+        item.innerHTML = `
+          <div class="manage-item-header">
+            <strong>${getDisplayName(app)}</strong>
+            <span style="font-size:0.8rem; color:var(--gold);">${app.category}</span>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" class="form-control" style="flex:2; padding:0.4rem;" value="${app.name}" id="edit-name-${app.id}">
+            <select class="form-control" style="flex:1; padding:0.4rem;" id="edit-cat-${app.id}">
+              <option value="ألعاب" ${app.category==='ألعاب'?'selected':''}>ألعاب</option>
+              <option value="تعليم" ${app.category==='تعليم'?'selected':''}>تعليم</option>
+              <option value="أدوات" ${app.category==='أدوات'?'selected':''}>أدوات</option>
+            </select>
+            <input type="text" class="form-control" style="flex:1.5; padding:0.4rem;" value="${app.icon || ''}" id="edit-icon-${app.id}" placeholder="Icon">
+          </div>
+          <textarea class="form-control" style="padding:0.4rem;" rows="2" id="edit-desc-${app.id}">${app.desc}</textarea>
+          <input type="text" class="form-control" style="padding:0.4rem;" value="${app.url.startsWith('data:') ? '[data URL - hidden for size]' : app.url}" id="edit-url-${app.id}" placeholder="URL">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px; flex-wrap:wrap; gap:8px;">
+            <label style="font-size:0.8rem; display:flex; align-items:center; gap:5px; cursor:pointer;">
+              <input type="checkbox" id="edit-hidden-${app.id}" ${app.hidden ? 'checked' : ''}> ${translations[currentLang].hideLabel}
+            </label>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-primary" style="padding:0.3rem 0.75rem; font-size:0.8rem;" onclick="updateApp(${app.id})">${translations[currentLang].saveBtn}</button>
+              <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem; background:rgba(255,0,0,0.18); color:#ff6b6b;" onclick="deleteApp(${app.id})">${translations[currentLang].deleteBtn}</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function updateApp(id) {
+      const app = appsList.find(a => a.id === id);
+      if (!app) return;
+
+      app.name = document.getElementById(`edit-name-${id}`).value.trim() || app.name;
+      app.category = document.getElementById(`edit-cat-${id}`).value;
+      app.icon = document.getElementById(`edit-icon-${id}`).value.trim();
+      app.desc = document.getElementById(`edit-desc-${id}`).value.trim();
+      const newUrl = document.getElementById(`edit-url-${id}`).value.trim();
+      if (newUrl && !newUrl.startsWith('[data')) {
+        app.url = newUrl;
+      }
+      app.hidden = document.getElementById(`edit-hidden-${id}`).checked;
+
+      saveAndRefresh();
+      showToast(translations[currentLang].toastUpdated);
+      renderManageList();
+    }
+
+    function deleteApp(id) {
+      if (!confirm(translations[currentLang].confirmDelete)) return;
+      appsList = appsList.filter(a => a.id !== id);
+      saveAndRefresh();
+      renderManageList();
+      showToast(translations[currentLang].toastDeleted);
+    }
+
+    function saveAndRefresh() {
+      localStorage.setItem('bp_film_apps_v4', JSON.stringify(appsList));
+      renderApps();
+    }
+
+    // ========== Share / Copy ==========
+    function copyLink(encodedUrl, event) {
+      if (event) event.preventDefault();
+      const path = decodeURIComponent(encodedUrl);
+      let textToCopy;
+
+      if (path.startsWith('data:')) {
+        textToCopy = path; // full data URL – can be pasted in address bar
+      } else if (path.startsWith('http://') || path.startsWith('https://')) {
+        textToCopy = path;
+      } else {
+        // relative → make absolute based on current page
+        try {
+          textToCopy = new URL(path, window.location.href).href;
+        } catch {
+          textToCopy = path;
+        }
+      }
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast(translations[currentLang].toastCopied);
+      }).catch(() => {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = textToCopy;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(translations[currentLang].toastCopied);
+      });
+    }
+
+    // ========== Export / Import ==========
+    function exportApps() {
+      const dataStr = JSON.stringify(appsList, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bp-film-apps.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast(translations[currentLang].toastExported);
+    }
+
+    function importApps() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const imported = JSON.parse(ev.target.result);
+            if (Array.isArray(imported)) {
+              appsList = imported;
+              saveAndRefresh();
+              renderManageList();
+              showToast(translations[currentLang].toastImported);
+            } else {
+              alert('Invalid JSON format');
+            }
+          } catch {
+            alert('Error reading JSON file');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    function resetToDefault() {
+      if (!confirm(translations[currentLang].confirmReset)) return;
+      appsList = structuredClone(initialApps);
+      saveAndRefresh();
+      renderManageList();
+      showToast(translations[currentLang].toastReset);
+    }
+
+    // ========== Language ==========
+    function applyLanguage() {
+      const t = translations[currentLang];
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+      document.getElementById('heroTitle').textContent = t.heroTitle;
+      document.getElementById('heroDesc').textContent = t.heroDesc;
+      document.getElementById('counterText').textContent = t.counterText;
+      document.getElementById('contactTitle').textContent = t.contactTitle;
+      document.getElementById('footerText').textContent = t.footerText;
+      document.getElementById('btnUpload').textContent = t.btnUpload;
+      document.getElementById('btnManage').textContent = t.btnManage;
+      document.getElementById('btnExport').textContent = t.btnExport;
+      document.getElementById('langLabel').textContent = t.langLabel;
+
+      // Filters
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns[0].textContent = t.filterAll;
+      filterBtns[1].textContent = t.filterGames;
+      filterBtns[2].textContent = t.filterEdu;
+      filterBtns[3].textContent = t.filterTools;
+
+      // Upload modal
+      document.getElementById('uploadModalTitle').textContent = t.uploadModalTitle;
+      document.getElementById('labelName').textContent = t.labelName;
+      document.getElementById('labelCategory').textContent = t.labelCategory;
+      document.getElementById('labelDesc').textContent = t.labelDesc;
+      document.getElementById('labelIcon').textContent = t.labelIcon;
+      document.getElementById('labelUrl').textContent = t.labelUrl;
+      document.getElementById('labelFile').textContent = t.labelFile;
+      document.getElementById('hintUrl').textContent = t.hintUrl;
+      document.getElementById('hintFile').textContent = t.hintFile;
+      document.getElementById('btnSaveApp').textContent = t.btnSaveApp;
+      document.getElementById('btnCancel').textContent = t.btnCancel;
+      document.getElementById('uploadNote').innerHTML = t.uploadNote;
+      if (!uploadedFileContent) {
+        document.getElementById('fileNameDisplay').textContent = t.fileChoose;
+      }
+
+      // Manage modal
+      document.getElementById('manageModalTitle').textContent = t.manageModalTitle;
+      document.getElementById('btnImport').textContent = t.btnImport;
+      document.getElementById('btnReset').textContent = t.btnReset;
+
+      renderApps();
+      if (document.getElementById('manageModal').style.display === 'flex') {
+        renderManageList();
+      }
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      applyLanguage();
+    }
+
+    // ========== Toast ==========
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2300);
+    }
+
+    // ========== Init ==========
+    initVisitorCount();
+    applyLanguage();
+  </script>
+</body>
+</html>
