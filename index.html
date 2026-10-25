@@ -1,679 +1,95 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BP film | معرض التطبيقات والألعاب التفاعلية</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --primary: #8b1e24;
-      --primary-accent: #aa242b;
-      --bg-dark: #1b1b1f;
-      --bg-surface: #26262b;
-      --logo-bg: #f5f5f7;
-      --text-main: #f0f0f5;
-      --text-muted: #a5a5b0;
-      --border: rgba(255, 255, 255, 0.1);
-      --gold: #d4af37;
-      --whatsapp: #25d366;
-    }
-
-    [dir="ltr"] { font-family: 'Poppins', sans-serif; }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.25s ease; }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Cairo', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.6;
-    }
-
-    header {
-      background: rgba(30, 30, 35, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0.8rem 1.8rem;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand-logo-card {
-      background: var(--logo-bg);
-      padding: 6px 16px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      border: 1px solid rgba(255,255,255,0.8);
-      text-decoration: none;
-    }
-
-    .logo-img { height: 48px; width: auto; max-width: 150px; object-fit: contain; }
-
-    .header-actions { display: flex; align-items: center; gap: 0.8rem; }
-
-    .lang-btn, .upload-btn, .manage-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .upload-btn { background: var(--primary); border-color: var(--primary); }
-    .upload-btn:hover { background: var(--primary-accent); }
-    .manage-btn:hover, .lang-btn:hover { background: rgba(255, 255, 255, 0.18); }
-
-    .hero {
-      text-align: center;
-      padding: 3.5rem 1rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-logo-wrapper {
-      display: inline-block;
-      background: var(--logo-bg);
-      padding: 18px 28px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-      margin-bottom: 2rem;
-      border: 2px solid rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-logo-large { height: 130px; width: auto; display: block; object-fit: contain; }
-    .hero h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 1rem; color: #ffffff; }
-    .hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; }
-
-    .visitor-counter {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      padding: 0.6rem 1.4rem;
-      border-radius: 50px;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .filter-container {
-      max-width: 1200px;
-      margin: 0 auto 1.5rem;
-      padding: 0 1.5rem;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 0.5rem 1.3rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem 4rem;
-      width: 100%;
-      flex-grow: 1;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(139, 30, 36, 0.6);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .card-preview {
-      height: 180px;
-      background: #151518;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .card-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .card-category-badge {
-      font-size: 0.75rem;
-      background: rgba(212, 175, 55, 0.15);
-      color: var(--gold);
-      padding: 3px 10px;
-      border-radius: 12px;
-      align-self: flex-start;
-      margin-bottom: 0.6rem;
-    }
-
-    .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
-    .card-actions { display: flex; gap: 0.8rem; }
-
-    .btn {
-      padding: 0.7rem 1rem;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      text-align: center;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-size: 0.9rem;
-    }
-
-    .btn-primary { background: var(--primary); color: #fff; flex: 2; }
-    .btn-primary:hover { background: var(--primary-accent); }
-    .btn-secondary { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--border); flex: 1; }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.18); }
-
-    /* Modal Overlay */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-
-    .modal-box {
-      background: #222227;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      width: 100%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    }
-
-    .modal-title { font-size: 1.3rem; margin-bottom: 1.2rem; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center; }
-
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; color: var(--text-muted); }
-    .form-control {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      background: #151518;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #fff;
-      font-family: inherit;
-    }
-
-    .file-input-wrapper {
-      border: 2px dashed var(--border);
-      padding: 1rem;
-      text-align: center;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      cursor: pointer;
-    }
-
-    /* Admin Management List inside Modal */
-    .manage-item {
-      background: #151518;
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .manage-item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .contact-section {
-      background: rgba(0, 0, 0, 0.2);
-      border-top: 1px solid var(--border);
-      padding: 3rem 1.5rem;
-      text-align: center;
-    }
-
-    .contact-container { max-width: 800px; margin: 0 auto; }
-    .contact-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
-    .contact-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .contact-item:hover { border-color: var(--primary); background: rgba(139, 30, 36, 0.25); }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      background: #141417;
-    }
-
-    .footer-logo-card { background: var(--logo-bg); padding: 6px 16px; border-radius: 10px; }
-    .footer-logo { height: 36px; display: block; }
-
-    .copied-toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--gold);
-      color: #000;
-      padding: 0.8rem 1.6rem;
-      border-radius: 30px;
-      font-weight: bold;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      opacity: 0;
-      transition: all 0.4s ease;
-      z-index: 1000;
-    }
-
-    .copied-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لوحة تحكم التطبيقات والدروس</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+:root {
+  --bg: #f3f6f9; --card: #fff; --ink: #1b2a35; --mute: #8a96a0; --line: #e1e7ec; --brand: #2a6289;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e151b; --card: #16202a; --ink: #e8eef2; --mute: #74828d; --line: #233340; --brand: #6fb1dd;
+  }
+}
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Tajawal", system-ui, sans-serif; line-height: 1.6;
+  padding: 20px;
+}
+.container {
+  max-width: 600px; margin: 0 auto;
+}
+h1 {
+  font-size: 1.4rem; font-weight: 800; color: var(--brand); margin-bottom: 5px;
+}
+p.sub {
+  color: var(--mute); font-size: 0.9rem; margin-bottom: 20px;
+}
+.app-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; padding: 16px; margin-bottom: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.app-info h3 {
+  margin: 0 0 5px 0; font-size: 1.05rem;
+}
+.app-info p {
+  margin: 0; color: var(--mute); font-size: 0.85rem;
+}
+.btn-group {
+  display: flex; gap: 8px;
+}
+button, a.btn {
+  font-family: inherit; font-weight: 700; font-size: 0.85rem;
+  padding: 8px 14px; border-radius: 8px; border: 0;
+  background: var(--brand); color: #fff; text-decoration: none;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+}
+button.share-btn {
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="nav-container">
-      <a href="#" class="brand-logo-card">
-        <img src="Logo.png" alt="BP film Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('textLogo').style.display='block';">
-        <span id="textLogo" style="display:none; font-weight:800; font-size:1.2rem; color:#111;">BP film</span>
-      </a>
-      <div class="header-actions">
-        <button class="upload-btn" onclick="openUploadModal()">📤 رفع تطبيق جديد</button>
-        <button class="manage-btn" onclick="openManageModal()">⚙️ إدارة التطبيقات</button>
-        <button class="lang-btn" onclick="toggleLanguage()">🌐 <span id="langLabel">English</span></button>
+<div class="container">
+  <h1>لوحة تطبيقاتي</h1>
+  <p class="sub">اختر التطبيق أو الدرس للفتح أو المشاركة المباشرة</p>
+
+  <div id="apps-list">
+    <!-- بطاقة درس يوم الاثنين -->
+    <div class="app-card">
+      <div class="app-info">
+        <h3>دروس يوم الاثنين</h3>
+        <p>عرض محتوى ودروس يوم الإثنين التفاعلية</p>
       </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-logo-wrapper">
-      <img src="Logo.png" alt="BP film" class="hero-logo-large" onerror="this.parentNode.style.display='none'">
-    </div>
-    <h1 id="heroTitle">معرض التطبيقات والألعاب التفاعلية</h1>
-    <p id="heroDesc">مساحة مخصصة لمشاركة وتجربة أفضل الإنتاجات والبرمجيات المصممة بلغة HTML5</p>
-
-    <div class="visitor-counter">
-      <span>👁️ <span id="counterText">عدد الزوار:</span></span>
-      <span id="visitorCount">1,248</span>
-    </div>
-  </section>
-
-  <!-- Categories Filter Bar -->
-  <div class="filter-container">
-    <button class="filter-btn active" onclick="filterCategory('الكل', this)">الكل</button>
-    <button class="filter-btn" onclick="filterCategory('ألعاب', this)">🎮 ألعاب</button>
-    <button class="filter-btn" onclick="filterCategory('تعليم', this)">🧮 تعليم</button>
-    <button class="filter-btn" onclick="filterCategory('أدوات', this)">📝 أدوات</button>
-  </div>
-
-  <!-- Apps Grid -->
-  <main class="main-container">
-    <div class="grid" id="appsGrid">
-      <!-- التطبيقات تظهر هنا -->
-    </div>
-  </main>
-
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <div class="contact-container">
-      <h2 id="contactTitle">تواصل معي</h2>
-      <div class="contact-grid">
-        <a href="tel:39466673" class="contact-item">📞 <span>39466673</span></a>
-        <a href="https://wa.me/39466673" target="_blank" class="contact-item" style="border-color: var(--whatsapp)">💬 <span>WhatsApp</span></a>
-        <a href="mailto:bahar981@gmail.com" class="contact-item">✉️ <span>bahar981@gmail.com</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-logo-card">
-      <img src="Logo.png" alt="BP film Logo" class="footer-logo" onerror="this.parentNode.style.display='none'">
-    </div>
-    <p>© 2026 BP film. جميع الحقوق محفوظة.</p>
-  </footer>
-
-  <!-- Modal: Upload Application -->
-  <div class="modal-overlay" id="uploadModal">
-    <div class="modal-box">
-      <div class="modal-title">
-        <span>📤 رفع وإضافة تطبيق جديد</span>
-        <button class="btn btn-secondary" style="padding:0.3rem 0.7rem;" onclick="closeUploadModal()">✕</button>
-      </div>
-      
-      <div class="form-group">
-        <label>اسم التطبيق / اللعبة:</label>
-        <input type="text" id="appName" class="form-control" placeholder="أدخل الاسم">
-      </div>
-
-      <div class="form-group">
-        <label>التصنيف (المجموعة):</label>
-        <select id="appCategory" class="form-control">
-          <option value="ألعاب">🎮 ألعاب</option>
-          <option value="تعليم">🧮 تعليم</option>
-          <option value="أدوات">📝 أدوات</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>الوصف المختصر:</label>
-        <textarea id="appDesc" class="form-control" rows="2" placeholder="وصف للعبة أو التطبيق"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>صورة أو أيقونة المعاينة (رمز تعبيري أو رابط صورة):</label>
-        <input type="text" id="appIcon" class="form-control" placeholder="مثال: 🎮 أو رابط صورة">
-      </div>
-
-      <div class="form-group">
-        <label>1. رفع ملف التطبيق (.html):</label>
-        <div class="file-input-wrapper" onclick="document.getElementById('appFile').click()">
-          <input type="file" id="appFile" accept=".html" style="display:none;" onchange="handleFileUpload(event)">
-          <span id="fileNameDisplay" style="color:var(--gold); font-weight:600;">📁 اضغط لاختيار ملف HTML من جهازك</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>2. أو ضع وصلة/رابط مباشر من الإنترنت:</label>
-        <input type="text" id="appUrl" class="form-control" placeholder="https://example.com أو apps/runner/index.html">
-      </div>
-
-      <div style="display:flex; gap:10px; margin-top:1.5rem;">
-        <button class="btn btn-primary" onclick="submitApp()">حفظ ونشر 🚀</button>
-        <button class="btn btn-secondary" onclick="closeUploadModal()">إلغاء</button>
+      <div class="btn-group">
+        <a href="./Monday/index.html" class="btn">فتح الدرس 🚀</a>
+        <button class="share-btn" onclick="shareApp('./Monday/index.html')">نسخ الرابط</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modal: Manage & Edit Applications -->
-  <div class="modal-overlay" id="manageModal">
-    <div class="modal-box">
-      <div class="modal-title">
-        <span>⚙️ إدارة وتعديل التطبيقات</span>
-        <button class="btn btn-secondary" style="padding:0.3rem 0.7rem;" onclick="closeManageModal()">✕</button>
-      </div>
-      <div id="manageListContainer">
-        <!-- يتم تعبئتها ديناميكياً -->
-      </div>
-    </div>
-  </div>
+<script>
+function shareApp(path) {
+  // توليد الرابط الحقيقي والنظيف بناءً على عنوان السيرفر
+  const fullUrl = new URL(path, window.location.href).href;
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(fullUrl).then(() => {
+      alert("تم نسخ الرابط الحقيقي بنجاح:\n" + fullUrl);
+    }).catch(err => {
+      prompt("انسخ الرابط يدوياً:", fullUrl);
+    });
+  } else {
+    prompt("انسخ الرابط يدوياً:", fullUrl);
+  }
+}
+</script>
 
-  <div id="toast" class="copied-toast">تمت العملية بنجاح! ✅</div>
-
-  <script>
-    let currentLang = 'ar';
-    let uploadedFileContent = '';
-
-    let initialApps = [
-      { id: 1, name: "لعبة الركض اللانهائي", category: "ألعاب", icon: "🎮", desc: "لعبة تفاعلية ممتعة ومصممة لتعمل بسلاسة على كافة الأجهزة والهواتف.", url: "apps/runner/index.html", hidden: false },
-      { id: 2, name: "تطبيق الرياضيات التفاعلي", category: "تعليم", icon: "🧮", desc: "أداة تعليمية تفاعلية مبسطة للمراحل التعليمية المختلفة.", url: "apps/math/index.html", hidden: false },
-      { id: 3, name: "منصة الاستبيانات والأدوات", category: "أدوات", icon: "📝", desc: "نماذج تفاعلية واستبيانات معالجة فورياً.", url: "apps/forms/index.html", hidden: false }
-    ];
-
-    let appsList = JSON.parse(localStorage.getItem('bp_film_apps_v3')) || initialApps;
-
-    function renderApps(filterCat = 'الكل') {
-      const grid = document.getElementById('appsGrid');
-      grid.innerHTML = '';
-
-      const filtered = appsList.filter(app => !app.hidden && (filterCat === 'الكل' || app.category === filterCat));
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1; text-align:center; padding:2rem;">لا توجد تطبيقات لعرضها في هذا التصنيف.</p>`;
-        return;
-      }
-
-      filtered.forEach(app => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        
-        let previewHtml = `<div class="card-preview">${app.icon || '🚀'}</div>`;
-        if (app.icon && (app.icon.startsWith('http') || app.icon.startsWith('data:'))) {
-          previewHtml = `<div class="card-preview"><img src="${app.icon}" alt="App Icon"></div>`;
-        }
-
-        card.innerHTML = `
-          ${previewHtml}
-          <div class="card-body">
-            <span class="card-category-badge">${app.category}</span>
-            <div class="card-title">${app.name}</div>
-            <div class="card-desc">${app.desc}</div>
-            <div class="card-actions">
-              <a href="${app.url}" target="_blank" class="btn btn-primary"><span>تجربة 🚀</span></a>
-              <button class="btn btn-secondary" onclick="copyLink('${app.url}')">🔗 <span>نسخ</span></button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function filterCategory(cat, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderApps(cat);
-    }
-
-    function openUploadModal() { document.getElementById('uploadModal').style.display = 'flex'; }
-    function closeUploadModal() { document.getElementById('uploadModal').style.display = 'none'; }
-    function openManageModal() { renderManageList(); document.getElementById('manageModal').style.display = 'flex'; }
-    function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; renderApps(); }
-
-    function handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        document.getElementById('fileNameDisplay').innerText = "تم اختيار الملف: " + file.name;
-        const reader = new FileReader();
-        reader.onload = function(e) { uploadedFileContent = e.target.result; };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function submitApp() {
-      const name = document.getElementById('appName').value;
-      const category = document.getElementById('appCategory').value;
-      const desc = document.getElementById('appDesc').value;
-      const icon = document.getElementById('appIcon').value || (category === 'ألعاب' ? '🎮' : category === 'تعليم' ? '🧮' : '📝');
-      let url = document.getElementById('appUrl').value;
-
-      if (uploadedFileContent) { url = uploadedFileContent; }
-
-      if (!name || !url) { alert('يرجى كتابة الاسم ورفع ملف أو وضع رابط!'); return; }
-
-      const newApp = { id: Date.now(), name, category, desc: desc || 'تطبيق تفاعلي جديد', icon, url, hidden: false };
-      appsList.push(newApp);
-      saveAndRefresh();
-      closeUploadModal();
-      showToast('تمت إضافة التطبيق بنجاح! ✅');
-    }
-
-    function renderManageList() {
-      const container = document.getElementById('manageListContainer');
-      container.innerHTML = '';
-
-      if (appsList.length === 0) {
-        container.innerHTML = `<p style="color:var(--text-muted); text-align:center;">لا توجد تطبيقات مسجلة.</p>`;
-        return;
-      }
-
-      appsList.forEach(app => {
-        const item = document.createElement('div');
-        item.className = 'manage-item';
-        item.innerHTML = `
-          <div class="manage-item-header">
-            <strong>${app.name}</strong>
-            <span style="font-size:0.8rem; color:var(--gold);">${app.category}</span>
-          </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <input type="text" class="form-control" style="flex:2; padding:0.4rem;" value="${app.name}" id="edit-name-${app.id}">
-            <select class="form-control" style="flex:1; padding:0.4rem;" id="edit-cat-${app.id}">
-              <option value="ألعاب" ${app.category==='ألعاب'?'selected':''}>ألعاب</option>
-              <option value="تعليم" ${app.category==='تعليم'?'selected':''}>تعليم</option>
-              <option value="أدوات" ${app.category==='أدوات'?'selected':''}>أدوات</option>
-            </select>
-            <input type="text" class="form-control" style="flex:1.5; padding:0.4rem;" value="${app.icon || ''}" id="edit-icon-${app.id}" placeholder="الأيقونة/الصورة">
-          </div>
-          <textarea class="form-control" style="padding:0.4rem;" rows="1" id="edit-desc-${app.id}">${app.desc}</textarea>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
-            <label style="font-size:0.8rem; display:flex; align-items:center; gap:5px; cursor:pointer;">
-              <input type="checkbox" id="edit-hidden-${app.id}" ${app.hidden ? 'checked' : ''}> إخفاء من المعرض
-            </label>
-            <div style="display:flex; gap:6px;">
-              <button class="btn btn-primary" style="padding:0.3rem 0.8rem; font-size:0.8rem;" onclick="updateApp(${app.id})">💾 حفظ</button>
-              <button class="btn btn-secondary" style="padding:0.3rem 0.8rem; font-size:0.8rem; background:rgba(255,0,0,0.2); color:#ff5555;" onclick="deleteApp(${app.id})">🗑️ حذف</button>
-            </div>
-          </div>
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    function updateApp(id) {
-      const app = appsList.find(a => a.id === id);
-      if (app) {
-        app.name = document.getElementById(`edit-name-${id}`).value;
-        app.category = document.getElementById(`edit-cat-${id}`).value;
-        app.icon = document.getElementById(`edit-icon-${id}`).value;
-        app.desc = document.getElementById(`edit-desc-${id}`).value;
-        app.hidden = document.getElementById(`edit-hidden-${id}`).checked;
-        saveAndRefresh();
-        showToast('تم تحديث التطبيق بنجاح! ✅');
-        renderManageList();
-      }
-    }
-
-    function deleteApp(id) {
-      if (confirm('هل أنت متأكد من حذف هذا التطبيق نهائياً؟')) {
-        appsList = appsList.filter(a => a.id !== id);
-        saveAndRefresh();
-        renderManageList();
-        showToast('تم حذف التطبيق بنجاح! 🗑️');
-      }
-    }
-
-    function saveAndRefresh() {
-      localStorage.setItem('bp_film_apps_v3', JSON.stringify(appsList));
-      renderApps();
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-      document.getElementById('langLabel').innerText = currentLang === 'ar' ? 'English' : 'عربي';
-      document.getElementById('heroTitle').innerText = currentLang === 'ar' ? 'معرض التطبيقات والألعاب التفاعلية' : 'Interactive Apps & Games Showcase';
-      document.getElementById('heroDesc').innerText = currentLang === 'ar' ? 'مساحة مخصصة لمشاركة وتجربة أفضل الإنتاجات والبرمجيات المصممة بلغة HTML5' : 'A platform dedicated to testing and sharing HTML5 applications and games.';
-      document.getElementById('counterText').innerText = currentLang === 'ar' ? 'عدد الزوار:' : 'Visitor Count:';
-      document.getElementById('contactTitle').innerText = currentLang === 'ar' ? 'تواصل معي' : 'Contact Me';
-    }
-
-    function copyLink(path) {
-      const fullUrl = path.startsWith('data:') ? 'رابط ملف مدمج' : new URL(path, window.location.href).href;
-      navigator.clipboard.writeText(fullUrl).then(() => { showToast('تم نسخ الرابط بنجاح! ✅'); });
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.innerText = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    renderApps();
-  </script>
 </body>
 </html>
