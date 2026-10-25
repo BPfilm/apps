@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>طبيب القلوب</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#faf6ec;--card:#ffffff;--tx:#23413b;--mut:#6b7f78;--ac:#3f8f7b;--gold:#c59a3d;--ok:#d9f0e6;--okb:#3f8f7b;--bad:#fbe6df;--badb:#c9694c;--ln:#e6dec9;--u:clamp(6px,min(1.35vh,2.15vw),14px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17302c;--card:#21403a;--tx:#f1ece0;--mut:#a9bdb6;--ac:#7cc5ae;--gold:#e2b85c;--ok:#2c5a4d;--okb:#7cc5ae;--bad:#5a3a30;--badb:#e59a80;--ln:#35564f}}
+:root[data-theme="dark"]{--bg:#17302c;--card:#21403a;--tx:#f1ece0;--mut:#a9bdb6;--ac:#7cc5ae;--gold:#e2b85c;--ok:#2c5a4d;--okb:#7cc5ae;--bad:#5a3a30;--badb:#e59a80;--ln:#35564f}
+html{background:var(--bg,#faf6ec)}
+html,body{margin:0;height:100%;height:100dvh}
+body{background:var(--bg);color:var(--tx);font-family:Tajawal,sans-serif;font-size:calc(var(--u)*2.15);line-height:1.6}
+#app{width:100%;max-width:calc(var(--u)*80);height:100%;box-sizing:border-box;margin:0 auto;padding:calc(var(--u)*1.2) calc(var(--u)*1.8);display:flex;flex-direction:column;gap:calc(var(--u)*1.1);overflow-y:auto}
+h1,h2{font-family:'Aref Ruqaa',serif;margin:0;font-weight:700;line-height:1.3}
+h1{font-size:calc(var(--u)*6.5);text-align:center}h2{font-size:calc(var(--u)*4)}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:calc(var(--u)*2)}
+.card{background:var(--card);border:1px solid var(--ln);border-top:5px solid var(--gold);border-radius:calc(var(--u)*2);padding:calc(var(--u)*1.5) calc(var(--u)*2)}
+.heart{display:flex;align-items:center;gap:calc(var(--u)*1.5)}.hb{justify-content:center}.hb svg{width:calc(var(--u)*14)!important;height:auto!important}
+.heart svg{width:calc(var(--u)*8);height:auto;aspect-ratio:1;flex:none;transition:filter .6s}
+.bar{width:100%;height:calc(var(--u)*1.2);border-radius:6px;background:var(--ln);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--ac));transition:width .6s}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:calc(var(--u));margin-top:calc(var(--u))}
+button{font:inherit;color:var(--tx);cursor:pointer}
+.opt{background:transparent;border:2px solid var(--ln);border-radius:calc(var(--u)*1.8);padding:calc(var(--u)*1.1) calc(var(--u));min-height:calc(var(--u)*5.6);font-size:calc(var(--u)*2.2);font-weight:500;transition:transform .15s,border-color .15s}
+.opt:hover:not(:disabled){border-color:var(--ac);transform:translateY(-2px)}
+.opt.ok{background:var(--ok);border-color:var(--okb)}.opt.bad{background:var(--bad);border-color:var(--badb)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:calc(var(--u)*1.8);padding:calc(var(--u)*1.2) calc(var(--u)*3.2);font-weight:700;font-size:calc(var(--u)*2.2)}
+:root[data-theme="dark"] .btn{color:#10251f}
+.note{margin-top:calc(var(--u));padding:calc(var(--u)) calc(var(--u)*1.5);font-size:calc(var(--u)*2);border-radius:calc(var(--u)*1.5);background:var(--bg);border:1px dashed var(--gold);animation:rise .4s}
+.pulse{animation:pulse .6s}.shake{animation:shake .4s}
+@keyframes pulse{50%{transform:scale(1.12)}}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.tag{font-size:calc(var(--u)*1.9);color:var(--gold);font-weight:700}
+.case{display:flex;gap:calc(var(--u)*1.2);align-items:center;margin:calc(var(--u)*.3) 0 calc(var(--u)*.8)}
+.av{flex:none;width:calc(var(--u)*15);aspect-ratio:120/140;animation:bob 3s ease-in-out infinite}.av svg,.av img{width:100%;height:100%}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.sc{font-size:calc(var(--u)*2.3);line-height:1.5;margin:calc(var(--u)*.5) 0}
+.c{text-align:center}.mini{font-size:calc(var(--u)*2);color:var(--mut)}
+ul{margin:8px 0 0;padding-inline-start:22px}
+.sb{background:none;border:1px solid var(--ln);border-radius:20px;padding:2px 12px;font-size:calc(var(--u)*1.9);color:var(--mut)}
+.ages{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u));margin-top:calc(var(--u))}.ages button:last-child{grid-column:1/-1}
+.zones{display:flex;gap:calc(var(--u));margin-top:calc(var(--u))}.zones .opt{flex:1}.pen svg{width:100%;height:auto;max-height:38vh}.dots{font-size:calc(var(--u)*3);margin:0}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const D=[
+["التكبر","رؤية النفس أعلى من الناس ورفض النصيحة","طالب جامعي يرد كل ملاحظة من زملائه بسخرية ويقول: أنا أعرف أكثر منكم جميعًا.","التواضع"],
+["الحسد","تمني زوال النعمة عن الغير","ينشر صديقك خبر نجاحه فتشعر بضيق شديد وتتمنى لو يفشل.","التسامح"],
+["العجب","الإعجاب بالنفس ونسيان فضل الله","بعد مشروع ناجح صرت ترى كل الفضل لعبقريتك وحدك.","التواضع"],
+["الأنانية","تقديم المصلحة الشخصية على كل شيء","في فريق العمل تأخذ أسهل المهام وتترك الباقي لغيرك.","الصدقة"],
+["الغيبة","ذكر الغائب بما يكره","تجلس مع أصحابك وتبدأ بذكر عيوب زميل غائب.","التقوى"],
+["النميمة","نقل الكلام بين الناس للإفساد","تنقل لزميلك ما قاله فلان عنه لتوقع بينهما.","الأمانة"],
+["الفتنة","إشعال الخلاف وإثارة الفرقة","تنشر في المجموعة كلامًا يشعل خلافًا بين الأصدقاء.","الصبر"],
+["التنمر","إيذاء الآخرين والسخرية منهم","تسخر من شكل زميل في التعليقات وتشجع غيرك على مشاركتك.","العفو"],
+["الإفك","الكذب والافتراء على الناس","تنشر خبرًا عن شخص دون أن تتأكد منه.","الصدق"],
+["السحت","الكسب الحرام","تُعرض عليك فرصة ربح سريع من مال لا تعرف مصدره.","التقوى"]];
+const V=["التواضع","التسامح","الصدقة","الأمانة","الصدق","العفو","الصبر","التقوى","غض البصر","صلة الرحم"];
+const AG=[['a','من 5 إلى 10 سنوات','A'],['b','من 11 إلى 15 سنة','B'],['c','من 16 إلى 20 سنة','C'],['d','من 21 إلى 25 سنة','C'],['e','من 26 إلى 30 سنة','D'],['f','من 31 إلى 40 سنة','D'],['g','من 41 فما فوق','E']];
+const T={A:[[0,'فاز أحمد في مسابقة الرسم، فصار يقول لأصحابه: أنا أحسن واحد وأنتم لا تعرفون شيئًا.'],[1,'أهدت المعلمة صديقك نجمة، فحزنت وتمنيت أن تضيع منه.'],[3,'عندك علبة حلوى وصديقك جائع، لكنك أخفيتها ولم تعطه.'],[4,'قال لك صديقك سرًا عن ولد غائب، فبدأت تحكي عيوبه للأولاد.'],[7,'ضحك الأولاد على لبس زميلهم الجديد وأخذوا يلقبونه بأسماء مزعجة.'],[8,'كسرت الكأس ثم قلت لأمك: أخي هو الذي كسرها.']],
+B:[[0,'في الصف ترد على ملاحظات معلمك وزملائك بتعالٍ وتقول: أنا أفهم أكثر منكم.'],[1,'ينشر زميلك صورة جائزته في المجموعة، فتشعر بضيق وتتمنى لو لم يفز.'],[2,'بعد أن نجحت في اختبار صعب صرت تظن أن النجاح بذكائك وحدك.'],[3,'في مشروع جماعي تأخذ الجزء الأسهل وتترك الباقي لزملائك.'],[4,'في الاستراحة تتحدث عن عيوب زميل غائب مع أصحابك.'],[5,'تنقل لزميلك ما قاله عنه صديقه لتوقع بينهما.'],[7,'تسخر من شكل زميلك في تعليقات اللعبة ويشاركك آخرون.'],[8,'تنشر في المجموعة خبرًا عن معلم دون أن تتأكد منه.']],
+C:null,
+D:[[0,'في اجتماع العمل ترفض كل رأي مخالف لأنك ترى خبرتك فوق الجميع.'],[1,'يترقى زميلك في العمل فتتضايق وتتمنى أن تفشل خطته القادمة.'],[2,'بعد مشروع ناجح ترى الفضل لك وحدك وتنسى فريقك.'],[3,'في البيت وفي العمل تقدم راحتك دائمًا على حاجة من حولك.'],[4,'في جلسة العائلة تذكر عيوب قريب غائب.'],[5,'تنقل لزميل كلامًا قاله عنه مديره لتوقع بينهما.'],[6,'تنشر في مجموعة العائلة كلامًا يشعل خلافًا بين الأقارب.'],[7,'تسخر من زميل في اجتماع جماعي ويضحك الآخرون.'],[8,'تنشر معلومة عن منافس في عملك دون تثبت.'],[9,'يعرض عليك شريك فرصة ربح سريع من مال مشبوه.']],
+E:[[0,'ترفض نصيحة أبنائك لأنك ترى أن خبرة السنين تجعلك لا تخطئ.'],[1,'يزدهر عمل جارك، فتتمنى زوال نعمته.'],[2,'تتحدث دائمًا عن إنجازاتك وتنسى فضل الله عليك.'],[3,'تحتفظ بالخير لنفسك وتبخل على أقاربك المحتاجين.'],[4,'في المجلس تتكلم عن عيوب رجل غائب.'],[5,'تنقل بين الجيران ما قيل عن بعضهم.'],[6,'تثير خلافًا بين أبناء العائلة حول الميراث.'],[7,'تسخر من ضعف شخص أمام الناس في مجلس.'],[8,'تردد خبرًا عن شخص دون أن تتأكد من صحته.'],[9,'تقبل ربحًا من تجارة تعلم أن فيها مالًا غير مشروع.']]};
+T.C=D.map((d,k)=>[k,d[2]]);
+const DK={0:'أن ترى نفسك أفضل من الناس',1:'أن تتمنى أن تضيع نعمة غيرك',3:'أن تفكر في نفسك فقط ولا تشارك',4:'أن تتكلم عن شخص غائب بما يكره',7:'أن تؤذي غيرك أو تسخر منه',8:'أن تقول كلامًا كاذبًا عن غيرك'};
+const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+let S;try{S={snd:true}}catch(e){}
+let ctx;
+function tone(seq){if(!S.snd)return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();let t=ctx.currentTime;seq.forEach(([f,d,ty])=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.18,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+d);t+=d*.8})}catch(e){}}
+const OK=[[660,.15],[880,.25]],NO=[[220,.25,'triangle'],[180,.3,'triangle']],CL=[[520,.08]],WIN=[[523,.18],[659,.18],[784,.18],[1047,.4]];
+function heartSvg(p){const h=28+p*1.1,l=62-p*.12;const c=`hsl(${h} ${38+p*.3}% ${l}%)`;const g=Math.round(p/6);
+return `<svg id="hs" viewBox="0 0 100 100" aria-label="القلب" style="filter:drop-shadow(0 0 ${g}px hsl(${h} 70% 60% / ${.25+p/160}))"><path d="M50 88C14 62 6 40 18 24c9-12 25-9 32 5 7-14 23-17 32-5 12 16 4 38-32 64z" fill="${c}" stroke="#c59a3d" stroke-width="2"/>${p>70?'<path d="M30 30c4-4 10-4 14 0" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" stroke-linecap="round"/>':''}</svg>`}
+const MO={smirk:'M52 69q9 5 17-3',flat:'M53 69h14',smile:'M50 67q10 9 20 0',side:'M57 69q6 4 11-1',laugh:'M49 66q11 14 22 0z',calm:'M50 67q10 8 20 0'};
+const BR={up:['M45 50q5-5 10 0','M65 50q5-5 10 0'],in:['M45 48l10 4','M75 48l-10 4'],flat:['M46 50h9','M65 50h9'],sly:['M45 51l10-3','M65 48l10 3']};
+const EY={n:'<circle cx="52" cy="58" r="2.6"/><circle cx="68" cy="58" r="2.6"/>',side:'<circle cx="55" cy="58" r="2.6"/><circle cx="71" cy="58" r="2.6"/>',closed:'<path d="M47 59q5 4 10 0M63 59q5 4 10 0" fill="none" stroke="#2a2a2a" stroke-width="2"/>',wide:'<circle cx="52" cy="58" r="4.5" fill="#fff"/><circle cx="68" cy="58" r="4.5" fill="#fff"/><circle cx="52" cy="58" r="2.2"/><circle cx="68" cy="58" r="2.2"/>',half:'<circle cx="52" cy="59" r="2.6"/><circle cx="68" cy="59" r="2.6"/><path d="M47 56h10M63 56h10" stroke="#2a2a2a" stroke-width="2"/>'};
+const ph=x=>`<rect x="84" y="96" width="16" height="28" rx="3" fill="#2f4a45"/><rect x="87" y="100" width="10" height="18" rx="1" fill="#e9f3ee"/>${x}`;
+const PR={crown:'<polygon points="42,28 47,14 54,24 60,12 66,24 73,14 78,28" fill="#e2b85c" stroke="#c59a3d" stroke-width="2"/>',starPhone:ph('<polygon points="92,103 94,108 98,108 95,111 96,116 92,113 88,116 89,111 86,108 90,108" fill="#c59a3d"/>'),warnPhone:ph('<path d="M92 103v9M92 115v2" stroke="#c9694c" stroke-width="3" stroke-linecap="round"/>'),plainPhone:ph('<circle cx="92" cy="110" r="4" fill="#c59a3d"/>'),mirror:'<circle cx="92" cy="104" r="9" fill="#dff1f2" stroke="#c59a3d" stroke-width="3"/><path d="M92 113v14" stroke="#c59a3d" stroke-width="3"/>',boxes:'<rect x="80" y="104" width="16" height="12" fill="#c59a3d"/><rect x="86" y="92" width="14" height="12" fill="#d8b25a"/>',bubble:'<path d="M80 86h26a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H94l-6 6v-6h-8a4 4 0 0 1-4-4V90a4 4 0 0 1 4-4z" fill="#fff" stroke="#c59a3d" stroke-width="2"/><circle cx="87" cy="95" r="1.8"/><circle cx="93" cy="95" r="1.8"/><circle cx="99" cy="95" r="1.8"/>',flame:'<path d="M92 92c4 8 10 10 10 18a10 10 0 0 1-20 0c0-6 4-8 5-12 2 3 3 4 5 4-1-4-1-7 0-10z" fill="#e0a15f"/>',bag:'<path d="M84 124c-6-8-4-16 2-18l-3-6h14l-3 6c6 2 8 10 2 18z" fill="#c59a3d"/><circle cx="91" cy="114" r="4" fill="#fbe9b8"/>'};
+const AV=[['m','#e7b98f','#eae4d2','smirk','sly','half','crown'],['f','#e8c4a0','#7aa6a0','flat','in','side','starPhone'],['m','#d9a77c','#dce8e4','smile','up','closed','mirror'],['f','#e8c4a0','#8fa8c8','smirk','flat','n','boxes'],['m','#c98f66','#e6e0cf','side','sly','side','bubble'],['f','#dcb592','#c9a98a','smirk','sly','half','bubble'],['m','#e0b087','#e8e2d0','smirk','in','n','flame'],['m','#b9835c','#dfe6ea','laugh','up','closed','plainPhone'],['f','#e8c4a0','#86a98d','smirk','up','n','warnPhone'],['m','#d3a074','#ebe5d3','smirk','up','wide','bag']];
+function av(k,calm){const [g,sk,cl,mo,br,ey,pr]=AV[k];const m=calm?'calm':mo,b=calm?'flat':br,e=calm?'n':ey;
+const body=g==='m'?`<path d="M26 140L34 90Q60 80 86 90L94 140z" fill="${cl}" stroke="#cfc6ad" stroke-width="2"/><path d="M52 86l8 12 8-12" fill="none" stroke="#cfc6ad" stroke-width="2"/>`:`<path d="M22 140Q28 88 60 80Q92 88 98 140z" fill="#3f5a60"/>`;
+const head=g==='m'?`<circle cx="60" cy="58" r="25" fill="${sk}"/><path d="M35 52Q35 29 60 29Q85 29 85 52Q60 43 35 52z" fill="#fff" stroke="#cfc6ad" stroke-width="2"/>`:`<ellipse cx="60" cy="58" rx="30" ry="33" fill="${cl}"/><ellipse cx="60" cy="60" rx="20" ry="23" fill="${sk}"/>`;
+return `<svg viewBox="0 0 120 140" aria-label="مريض"><circle cx="60" cy="76" r="56" fill="${calm?'#7cc5ae':'#c59a3d'}" fill-opacity=".18"/>${body}${head}<g fill="#2a2a2a">${EY[e]}</g><path d="${BR[b].join('')}" fill="none" stroke="#2a2a2a" stroke-width="2.4" stroke-linecap="round"/><path d="${MO[m]}" fill="${m==='laugh'?'#7a2f2f':'none'}" stroke="#7a2f2f" stroke-width="2.4" stroke-linecap="round"/>${calm?'':PR[pr]}</svg>`}
+const IMG={};
+const SC=[
+'<rect x="6" y="12" width="46" height="28" rx="3" fill="#7cc5ae" fill-opacity=".3"/><path d="M12 22h30M12 30h20" stroke="#c59a3d" stroke-width="2"/>',
+'<circle cx="14" cy="20" r="7" fill="#c59a3d" fill-opacity=".3"/><circle cx="30" cy="12" r="5" fill="#7cc5ae" fill-opacity=".35"/><circle cx="106" cy="24" r="6" fill="#c59a3d" fill-opacity=".3"/>',
+'<path d="M16 24l2 5 5 2-5 2-2 5-2-5-5-2 5-2zM102 18l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#e2b85c" fill-opacity=".7"/>',
+'<rect x="6" y="118" width="108" height="22" rx="4" fill="#c59a3d" fill-opacity=".3"/>',
+'<path d="M10 100h18v12a9 9 0 0 1-18 0zM28 104a5 5 0 0 1 0 8" fill="#c59a3d" fill-opacity=".3" stroke="#c59a3d" stroke-opacity=".5" stroke-width="2"/>',
+'<rect x="8" y="10" width="36" height="40" rx="3" fill="#7cc5ae" fill-opacity=".25"/><path d="M26 10v40M8 30h36" stroke="#c59a3d" stroke-opacity=".5" stroke-width="2"/>',
+'<circle cx="14" cy="96" r="7" fill="#7cc5ae" fill-opacity=".35"/><circle cx="106" cy="90" r="7" fill="#c59a3d" fill-opacity=".35"/><circle cx="22" cy="72" r="5" fill="#c59a3d" fill-opacity=".25"/>',
+'<rect x="6" y="14" width="40" height="8" rx="4" fill="#7cc5ae" fill-opacity=".35"/><rect x="6" y="28" width="32" height="8" rx="4" fill="#c59a3d" fill-opacity=".3"/><rect x="6" y="42" width="36" height="8" rx="4" fill="#7cc5ae" fill-opacity=".3"/>',
+'<rect x="6" y="12" width="44" height="6" rx="3" fill="#c59a3d" fill-opacity=".4"/><path d="M6 26h40M6 34h32M6 42h38" stroke="#7cc5ae" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>',
+'<path d="M4 120V84h14v36zM20 120V70h16v50zM88 120V76h14v44zM104 120V90h12v30z" fill="#7cc5ae" fill-opacity=".3"/>'];
+function av2(k,calm){if(IMG[k+(calm?'c':'')])return `<img src="${IMG[k+(calm?'c':'')]}" alt="مريض" style="width:100%;height:100%;object-fit:contain">`;
+let s=av(k,calm);const g=AV[k][0],sk=AV[k][1],e=calm?'n':AV[k][5];
+let i=s.indexOf('fill-opacity=".18"/>')+20;s=s.slice(0,i)+(calm?'':SC[k])+s.slice(i);
+if(g==='m'&&[4,6,9].includes(k)){i=s.indexOf('<g fill="#2a2a2a">');s=s.slice(0,i)+'<path d="M38 62Q38 84 60 86Q82 84 82 62Q74 74 60 74Q46 74 38 62z" fill="#4a372c"/>'+s.slice(i)}
+const ex=e==='side'?[55,71]:[52,68];
+let o='<ellipse cx="45" cy="67" rx="5" ry="3" fill="#e08a7a" fill-opacity=".3"/><ellipse cx="75" cy="67" rx="5" ry="3" fill="#e08a7a" fill-opacity=".3"/><path d="M60 60q-3 5 1 6" fill="none" stroke="#a8764f" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>';
+if(e!=='closed')o+=`<circle cx="${ex[0]+1}" cy="57" r="1" fill="#fff"/><circle cx="${ex[1]+1}" cy="57" r="1" fill="#fff"/>`;
+o+=g==='m'?'<path d="M60 100v38" stroke="#cfc6ad" stroke-width="1.6"/><circle cx="60" cy="108" r="1.4" fill="#cfc6ad"/><circle cx="60" cy="118" r="1.4" fill="#cfc6ad"/>':'<path d="M44 100q-2 20-4 38M76 100q2 20 4 38" fill="none" stroke="#2f4549" stroke-width="2"/>';
+o+=`<circle cx="36" cy="122" r="5.5" fill="${sk}"/><circle cx="${calm?84:88}" cy="${calm?122:124}" r="5.5" fill="${sk}"/>`;
+return s.replace('</svg>',o+'</svg>')}
+function topbar(){return `<div class="top"><span>${S.scr==='play'?`حالة ${S.i+1} من ${S.cs.length}`:'طبيب القلوب'}</span><button class="sb" onclick="S.snd=!S.snd;tone(CL);R()">${S.snd?'🔊 الصوت':'🔇 الصوت'}</button></div><div class="heart">${heartSvg(S.p)}<div style="flex:1;display:flex;flex-direction:column;gap:4px"><div class="bar"><i style="width:${S.p}%"></i></div><span class="mini">نقاء القلب: ${Math.round(S.p)}%</span></div></div>`}
+const fmt=ms=>{const s=Math.round(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const PA='موقف: بر الوالدين',PH='موقف: مساعدة الآخرين';
+const W={
+A:[['v','أمك تحتاج مساعدة في ترتيب البيت وأنت تلعب.','ماذا تفعل؟',['أتوقف عن اللعب وأساعدها بفرح','أقول: بعد قليل، ولا أفعل شيئًا','أتظاهر بالنوم','أطلب منها مالًا قبل أن أساعدها'],'من بر الوالدين مساعدتهما بفرح وطاعتهما في المعروف.',PA,2],['v','رأيت زميلك يبكي لأن قلمه ضاع.','ما التصرف الأنسب؟',['أعطيه قلمًا وأساعده','أضحك عليه','أتركه وأذهب','أقول: هذا ليس شأني'],'مساعدة المحتاج من أخلاق المسلم.',PH,3]],
+B:[['v','والدك يطلب منك أن تترك الجوال وتساعده وأنت في وسط لعبة.','ما التصرف الأنسب؟',['أنهي اللعب فورًا وأخدمه بأدب','أقول: دقيقة، ثم أتأخر ساعة','أرد بصوت عالٍ لأنه قاطعني','أطلب من أخي أن يذهب بدلًا مني'],'البر يظهر في سرعة الاستجابة وحسن الأدب مع الوالدين.',PA,2],['v','زميل جديد في الصف لا يعرف أحدًا ويجلس وحده.','ما التصرف الأنسب؟',['أتعرف عليه وأعرّفه على الجميع','أتجاهله','أسخر من لهجته','أنتظر أن يتكلم هو أولًا'],'من مساعدة الآخرين أن تؤنس الغريب وتشعره بالقبول.',PH,3]],
+C:[['v','تأخرت خارج البيت وأمك تتصل بك لتطمئن عليك.','ما التصرف الأنسب؟',['أرد بهدوء وأطمئنها وأعود في الوقت','أغلق الهاتف حتى لا أُحرج','أرد بانزعاج وأقول: لست طفلًا','أتجاهل الاتصال'],'من البر طمأنة الوالدين والرد عليهما بلين.',PA,2],['v','زميلك يتعثر في مادة وأنت متفوق فيها.','ما التصرف الأنسب؟',['أشرح له وأعطيه ملخصاتي','أخفي ملخصاتي عنه','أقول له إن الأمر سهل ولا يحتاج شرحًا','أنتظر رسوبه'],'بذل العلم والمساعدة من أجمل صور مساعدة الآخرين.',PH,3]],
+D:[['v','والدك كبر ويحتاج مرافقة إلى المستشفى في موعد عمل مهم.','ما التصرف الأنسب؟',['أرتب وقتي وأرافقه وأتواصل مع العمل','أرسل سائقًا فقط وأنشغل','أقول: لا وقت عندي','أترك الأمر لإخوتي'],'برّ الوالدين في كبرهما يقدَّم على كثير من الأشغال.',PA,2],['v','جار لك فقد عمله ويتردد في طلب المساعدة.','ما التصرف الأنسب؟',['أعرض مساعدتي بلطف وأدله على فرصة','أتظاهر أني لا أعلم','أتحدث عن حاله في المجلس','أقرضه مع المنّ والأذى'],'المساعدة بلطف وستر تحفظ كرامة المحتاج.',PH,3]],
+E:[['v','أمك كبيرة في السن وتكرر نفس الكلام.','ما التصرف الأنسب؟',['أصغي إليها بصبر وأخاطبها بلين','أقاطعها وأقول: قلتِ هذا من قبل','أتضجر وأنهي الحديث','أتركها لمن يهتم بها'],'الصبر والرفق بالوالدين عند الكبر من أعظم البر.',PA,2],['v','في الحي أرملة تحتاج من يقضي لها حاجاتها.','ما التصرف الأنسب؟',['أتفقد حالها وأقضي حاجتها بستر','أطلب منها أجرًا','أخبر الناس لأظهر فضلي','أترك ذلك للجمعيات فقط'],'قضاء الحاجات بستر أبعد عن الرياء وأحفظ لكرامة الناس.',PH,3]]};
+function topbar(){return `<div class="top"><span>${S.scr==='play'?`المرحلة ${Math.floor(S.i/S.sz)+1} · حالة ${S.i+1} من ${S.cs.length}`:'طبيب القلوب'}</span>${S.scr==='play'?`<span>⏱ <b id="tm">${fmt(S.done?S.last:Date.now()-S.t0)}</b></span>`:''}<button class="sb" onclick="S.snd=!S.snd;tone(CL);R()">${S.snd?'🔊 الصوت':'🔇 الصوت'}</button></div><div class="heart">${heartSvg(S.p)}<div class="bar"><i style="width:${S.p}%"></i></div><span class="mini">نقاء القلب: ${Math.round(S.p)}%</span></div>`}
+function start(g){const a=AG.find(x=>x[0]===g)||AG[2];S.age=a[0];S.cs=T[a[2]].concat(W[a[2]]);S.sz=Math.ceil(S.cs.length/3);S.pool=T[a[2]].map(c=>D[c[0]][0]);S.dk=a[2]==='A';S.scr='play';S.i=0;S.p=50;S.o=sh(S.cs.map((_,j)=>j));S.miss=[];S.ok=0;S.ok2=0;S.tms=[];S.st=0;S.done=false;S.opts=null;tone(CL);R()}
+function pick(j){if(S.done)return;S.done=true;const cs=S.cs[S.o[S.i]],val=cs[0]==='v',d=val?null:D[cs[0]];const ok=val?S.opts[j]===cs[3][0]:(S.st===0?S.opts[j]===d[0]:S.opts[j]===d[3]);S.last=Date.now()-S.t0;S.tms.push(S.last);S.fb=ok;if(val){if(ok)S.ok2++}else if(S.st===0){if(ok)S.ok++;else S.miss.push(d[0])}S.sel=j;S.p=Math.max(0,Math.min(100,S.p+(ok?(val?5:S.st?4:6):-3)));tone(ok?OK:NO);R();const hh=document.getElementById('hs');if(hh)hh.classList.add(ok?'pulse':'shake')}
+function next(){tone(CL);const cs=S.cs[S.o[S.i]];if(cs[0]!=='v'&&S.st===0){S.st=1;S.done=false;R();return}
+S.st=0;S.done=false;S.i++;if(S.i>=S.cs.length){S.scr='end';tone(WIN)}else if(S.i%S.sz===0){S.pk={lv:S.i/S.sz,res:[],busy:false,out:null};S.scr='pen'}R()}
+function shoot(z){const k=S.pk;if(k.busy||k.out)return;k.busy=true;tone(CL);const pr=[.35,.55][k.lv-1]||.6;let g=z;if(Math.random()>=pr)g=sh([0,1,2].filter(x=>x!==z))[0];const save=g===z,dx=[-75,0,75];const b=document.getElementById('bl'),kp=document.getElementById('kp');if(b)b.style.transform=`translate(${dx[z]}px,-70px)`;if(kp)kp.style.transform=`translateX(${dx[g]}px)`;
+setTimeout(()=>{k.busy=false;k.res.push(!save);if(!save){k.out='goal';tone(WIN)}else{tone(NO);if(k.res.length>=3)k.out='fail'}R()},700)}
+function penR(a){const k=S.pk,sc=1+.2*k.lv;
+const svg=`<svg viewBox="0 0 300 190" aria-label="مرمى"><rect x="0" y="150" width="300" height="40" fill="#7cc5ae" fill-opacity=".25"/><rect x="30" y="28" width="240" height="122" fill="none" stroke="#c59a3d" stroke-width="5"/><path d="M30 58h240M30 88h240M30 118h240M70 28v122M110 28v122M150 28v122M190 28v122M230 28v122" stroke="#c59a3d" stroke-opacity=".35"/><g id="kp" style="transition:transform .5s"><g transform="translate(150 112) scale(${sc})"><circle cy="-30" r="12" fill="#e0b087"/><rect x="-14" y="-18" width="28" height="36" rx="8" fill="#3f8f7b"/><path d="M-14 -10l-16 10M14 -10l16 10" stroke="#e0b087" stroke-width="6" stroke-linecap="round"/><rect x="-10" y="16" width="8" height="18" fill="#23413b"/><rect x="2" y="16" width="8" height="18" fill="#23413b"/></g></g><circle id="bl" cx="150" cy="172" r="9" fill="#fff" stroke="#23413b" stroke-width="2" style="transition:transform .5s"/></svg>`;
+const dots=[0,1,2].map(i=>k.res[i]===undefined?'⚪':k.res[i]?'✅':'❌').join(' ');
+let ctl=`<div class="zones" dir="ltr"><button class="opt" onclick="shoot(0)">يسار</button><button class="opt" onclick="shoot(1)">وسط</button><button class="opt" onclick="shoot(2)">يمين</button></div>`;
+if(k.out==='goal')ctl=`<div class="note">هدف! اجتزت الحارس، والمرحلة التالية أصعب.</div><div class="c" style="margin-top:14px"><button class="btn" onclick="S.scr='play';R()">المرحلة التالية</button></div>`;
+if(k.out==='fail')ctl=`<div class="note">صدّ الحارس المحاولات الثلاث، حاول مرة أخرى.</div><div class="c" style="margin-top:14px"><button class="btn" onclick="S.pk.res=[];S.pk.out=null;R()">حاول مرة أخرى</button></div>`;
+a.innerHTML=topbar()+`<div class="card pen c"><h2>تحدي الحارس · المستوى ${k.lv}</h2><p class="sc">سجّل هدفًا واحدًا خلال ثلاث محاولات لتنتقل إلى مرحلة أصعب${k.lv>1?'. الحارس صار أقوى!':'.'}</p>${svg}<p class="dots">${dots}</p>${ctl}</div>`}
+function R(){const a=document.getElementById('app');
+if(S.scr==='home'){a.innerHTML=`<h1>طبيب القلوب</h1><div class="card c"><p class="sc">القلب يمرض كما يمرض الجسد، وله طبيب يشخّص ويصف العلاج.</p><p>تأتيك حالات من الحياة اليومية على ثلاث مراحل. شخّص الآفة واختر الفضيلة، وسجّل هدفًا على الحارس لتنتقل إلى مرحلة أصعب.</p><p class="mini">اختر فئتك العمرية لتناسبك الحالات</p><div class="ages">${AG.map(g=>`<button class="opt" onclick="start('${g[0]}')">${g[1]}</button>`).join('')}</div></div><div class="heart hb">${heartSvg(50)}</div>`;return}
+if(S.scr==='pen'){penR(a);return}
+if(S.scr==='play'){const cs=S.cs[S.o[S.i]],val=cs[0]==='v',k=cs[0],d=val?null:D[k],key=S.i+'-'+S.st;
+if(!S.opts||(!S.done&&S.fresh!==key)){S.fresh=key;S.t0=Date.now();S.opts=val?sh(cs[3]):S.st===0?sh([d[0],...sh(S.pool.filter(x=>x!==d[0])).slice(0,3)]):sh([d[3],...sh(V.filter(x=>x!==d[3])).slice(0,3)])}
+const right=o=>val?o===cs[3][0]:(S.st===0?o===d[0]:o===d[3]);
+const q=val?cs[2]:(S.st===0?'ما تشخيص هذه الحالة؟':'ما الفضيلة الوقائية الأنسب؟');
+const bs=S.opts.map((o,j)=>{let c='opt';if(S.done){if(right(o))c+=' ok';else if(j===S.sel)c+=' bad'}return `<button class="${c}" ${S.done?'disabled':''} onclick="pick(${j})">${o}</button>`}).join('');
+let n='';if(S.done){const exp=val?`الصواب: <b>${cs[3][0]}</b>. ${cs[4]}`:(S.st===0?`<b>${d[0]}</b>: ${(S.dk&&DK[k])||d[1]}.`:`الوقاية الأنسب هنا: <b>${d[3]}</b>.${S.fb?' وتحسّن حال المريض.':''}`);
+const last=val||S.st===1,end=S.i+1>=S.cs.length,sg=(S.i+1)%S.sz===0;
+n=`<div class="note">${S.fb?'أحسنت! ':'ليست هذه، '}${exp}<br><span class="mini">⏱ زمن إجابتك: ${fmt(S.last)}</span></div><div class="c" style="margin-top:14px"><button class="btn" onclick="next()">${last&&end?'عرض النتيجة':last&&sg?'تحدي الحارس':'التالي'}</button></div>`}
+const tag=val?cs[5]:(S.st===0?'الخطوة 1: التشخيص':'الخطوة 2: الوصفة');
+const avs=val?av2(cs[6],S.done&&S.fb):av2(k,S.done&&S.st===1&&S.fb);
+a.innerHTML=topbar()+`<div class="card"><span class="tag">${tag}</span><div class="case"><div class="av">${avs}</div><p class="sc" style="margin:0">${cs[1]}</p></div><b>${q}</b><div class="opts">${bs}</div>${n}</div>`;return}
+const nD=S.cs.filter(c=>c[0]!=='v').length,nV=S.cs.length-nD,p=S.p,tot=S.tms.reduce((x,y)=>x+y,0),avg=tot/Math.max(1,S.tms.length);
+const t=p>=85?'طبيب قلوب ماهر':p>=60?'أنت على الطريق الصحيح':'تحتاج إلى مراجعة، حاول مرة أخرى';
+a.innerHTML=topbar()+`<div class="card c"><h2>${t}</h2><p class="sc">نقاء قلبك في النهاية: ${Math.round(p)}%</p><p>أصبت في تشخيص ${S.ok} من ${nD} حالات، وفي مواقف بر الوالدين ومساعدة الآخرين ${S.ok2} من ${nV}.</p>${S.miss.length?`<p class="mini">راجع هذه الآفات: ${S.miss.join('، ')}</p>`:'<p class="mini">شخّصت كل الحالات بدقة، أحسنت.</p>'}<p class="mini">⏱ متوسط زمن الإجابة: ${fmt(avg)} · المجموع: ${fmt(tot)}</p></div><div class="card"><b>تذكّر طرق العلاج:</b><ul><li>التحلي بمكارم الأخلاق</li><li>ذكر الله والتضرع بالدعاء والاستغفار</li><li>تدبر القرآن الكريم</li><li>بناء الوعي واليقين، كما تبتعد عن شعلة الشمعة لعلمك أنها تحرق</li></ul></div><div class="c"><button class="btn" onclick="start(S.age)">العب مرة أخرى</button> <button class="btn" style="background:transparent;color:var(--tx);border:2px solid var(--ln)" onclick="S.scr='home';R()">تغيير الفئة</button></div>`}
+if(typeof setInterval==='function')setInterval(()=>{const e=document.getElementById('tm');if(e&&S.scr==='play'&&!S.done)e.textContent=fmt(Date.now()-S.t0)},500);
+S.scr='home';S.p=50;R();
+</script>
+</body>
+</html>
